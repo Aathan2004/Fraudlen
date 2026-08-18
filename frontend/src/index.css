@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   GLOBAL BASE
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --scrollbar-thumb: #30363d;
+  --scrollbar-track: #0d1117;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #0d1117;
+  color: #f0f6fc;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #484f58; }
+
+/* ============================================================
+   COMPONENT LAYER
+   ============================================================ */
+
+@layer components {
+  /* Cards */
+  .card {
+    @apply bg-bg-surface rounded-xl border border-bg-border;
+  }
+
+  .card-elevated {
+    @apply bg-bg-elevated rounded-xl border border-bg-border;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm
+           bg-accent-amber text-bg-base transition-all duration-200
+           hover:bg-accent-amber-light active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm
+           text-text-muted border border-bg-border transition-all duration-200
+           hover:text-text-primary hover:border-text-dim;
+  }
+
+  /* Table */
+  .data-table th {
+    @apply px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-text-muted
+           bg-bg-base border-b border-bg-border whitespace-nowrap cursor-pointer select-none;
+  }
+
+  .data-table td {
+    @apply px-4 py-3.5 text-sm text-text-secondary border-b border-bg-border;
+  }
+
+  .data-table tr {
+    @apply transition-colors duration-150;
+  }
+
+  .data-table tbody tr:hover {
+    @apply bg-bg-elevated cursor-pointer;
+  }
+
+  /* Input */
+  .input-field {
+    @apply w-full px-3.5 py-2.5 rounded-lg bg-bg-elevated border border-bg-border
+           text-text-primary text-sm placeholder-text-dim
+           focus:outline-none focus:ring-2 focus:ring-accent-amber/40 focus:border-accent-amber/60
+           transition-all duration-200;
+  }
+
+  /* Risk badge base */
+  .risk-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider;
+  }
+
+  /* Skeleton pulse */
+  .skeleton {
+    @apply animate-pulse bg-bg-elevated rounded;
+  }
+
+  /* Stat number */
+  .stat-value {
+    @apply font-bold text-2xl text-text-primary tabular-nums;
+  }
+
+  /* Section title */
+  .section-title {
+    @apply text-base font-semibold text-text-primary;
+  }
+
+  /* Sidebar nav item */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+           text-text-muted transition-all duration-200
+           hover:text-text-primary hover:bg-bg-elevated;
+  }
+
+  .nav-item.active {
+    @apply text-accent-amber bg-accent-amber/10 border-l-2 border-accent-amber;
+  }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    #161b22 0%,
+    #1f2937 50%,
+    #161b22 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 1.5s linear infinite;
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.count-up {
+  animation: count-up 0.5s ease-out forwards;
+}
+
+/* Recharts tooltip override */
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+.custom-tooltip {
+  background: #1f2937;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #c9d1d9;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.custom-tooltip .label {
+  font-weight: 600;
+  color: #f0f6fc;
+  margin-bottom: 4px;
+}
+
+/* Upload dropzone */
+.dropzone-active {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.05);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+/* Gauge ring animation */
+@keyframes gauge-fill {
+  from { stroke-dashoffset: 340; }
+}
+
+.gauge-ring {
+  animation: gauge-fill 1.2s ease-out forwards;
+}
+
+/* Radial progress */
+.radial-progress {
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+/* Chart legend */
+.recharts-legend-item-text {
+  color: #8b949e !important;
+  font-size: 12px !important;
+}
+
+/* Focus ring */
+button:focus-visible, a:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
