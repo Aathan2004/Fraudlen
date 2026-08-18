@@ -257,15 +257,15 @@ export default function UploadDropzone() {
             key={id}
             onClick={() => { setMode(id); setStatus('idle'); setError(''); }}
             disabled={status === 'uploading'}
-            className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-md
-              text-sm font-medium transition-all duration-200
+            className={`flex-1 min-w-0 flex items-center justify-center gap-2 py-2 px-3 rounded-md
+              text-xs sm:text-sm font-medium transition-all duration-200
               ${mode === id
                 ? 'bg-accent-amber text-bg-base shadow-sm'
                 : 'text-text-muted hover:text-text-primary'
               }`}
           >
-            <Icon className="w-3.5 h-3.5" />
-            {label}
+            <Icon className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">{label}</span>
           </button>
         ))}
       </div>

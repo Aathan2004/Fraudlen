@@ -121,7 +121,7 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => { setMode('login'); setError(''); setSuccessMsg(''); }}
-              className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ${
+              className={`flex-1 min-w-0 px-1 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all duration-200 truncate ${
                 mode === 'login'
                   ? 'bg-accent-amber text-bg-base shadow-sm'
                   : 'text-text-muted hover:text-text-primary'
@@ -132,7 +132,7 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => { setMode('register'); setError(''); setSuccessMsg(''); }}
-              className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ${
+              className={`flex-1 min-w-0 px-1 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all duration-200 truncate ${
                 mode === 'register'
                   ? 'bg-accent-amber text-bg-base shadow-sm'
                   : 'text-text-muted hover:text-text-primary'
